@@ -1,0 +1,2 @@
+# MONEY
+math=meth
