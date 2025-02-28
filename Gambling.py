@@ -15,7 +15,7 @@ payouts = {
 
 def Lines():
     while True:
-        get_lines = input("How many lines would you like to play? (1-6):")
+        get_lines = input("How many lines would you like to play? (1-6): ")
         if get_lines.isdigit():
             get_lines = int(get_lines)
             if 1 <= get_lines <= MAX_LINES:
@@ -30,15 +30,15 @@ def Lines():
 def Bet():
     while True:
         get_bet = input("How much would you like to bet? $")
-        if get_bet.isdigit():
-            get_bet = int(get_bet)
+        try:
+            get_bet = float(get_bet)
             if get_bet > MAX_BET:
                 print("Your bet is too high. Max bet is $1000")
             elif get_bet < MIN_BET:
                 print("Your bet is too low. Min bet is $0.50")
             else:
                 return get_bet
-        else:
+        except ValueError:
             print("Please enter a valid number.")
 
 def main():
@@ -47,5 +47,6 @@ def main():
     print(f"Total bet: ${get_bet * get_lines}")
     print("Good luck!")
 
-main()
+if __name__ == "__main__":
+    main()
 
