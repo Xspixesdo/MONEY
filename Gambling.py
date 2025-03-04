@@ -15,13 +15,13 @@ payouts = {
 
 def Lines():
     while True:
-        get_lines = input("How many lines would you like to play? (1-6): ")
-        if get_lines.isdigit():
-            get_lines = int(get_lines)
-            if 1 <= get_lines <= MAX_LINES:
-                return get_lines
-            elif get_lines < MIN_LINES:
-                print("The minimum number of lines is 1")
+        try:
+            lines = int(input(f"Enter the number of lines to bet on ({MIN_LINES}-{MAX_LINES}): "))
+            if MIN_LINES <= lines <= MAX_LINES:
+                return lines
+            
+    
+        
             else:
                 print("The maximum number of lines is 6")
         else:
