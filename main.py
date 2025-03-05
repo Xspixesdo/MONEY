@@ -1,7 +1,7 @@
 import random
 
 MAX_LINES = 3
-MAX_BET = 100
+MAX_BET = 1000
 MIN_BET = 1
 
 ROWS = 3
@@ -16,7 +16,7 @@ symbol_count = {
 
 symbol_value = {
     "A": 50,
-    "B": 100,
+    "B": 80,
     "C": 11,
     "D": 10
 }
