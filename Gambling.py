@@ -1,99 +1,58 @@
 import random
 
-MAX_BET = 1000
-MIN_BET = 0.50
-MAX_LINES = 6
+MAX_BALANCE = 1000
+MIN_BALANCE = 0.50
+MAX_LINES = 3
 MIN_LINES = 1
 
-symbols = ["Cherry", "Bell", "Lemon", "Orange", "Star", "Skull"]
-Input_List_payouts = {
-    "Cherry": 180,
-    "Bell": 100,
-    "Lemon": 90,
-    "Orange": 60,
-    "Star": 20,
-    "Skull": 2,
-}
-
-
-
-
-def Lines():
-    for line in range(1, MAX_LINES + 1):
-       while True:
-        try:
-            lines = int(input(f"Enter the number of lines to bet on ({MIN_LINES}-{MAX_LINES}): "))
-            if MIN_LINES <= lines <= MAX_LINES:
-                return lines
-            else:
-                print(f"Please enter a number between {MIN_LINES} and {MAX_LINES}.")
-        except ValueError:
-            print("Please enter a valid number.")
-       
-        break
-
-def Bet():
+def amount():
     while True:
         try:
-            bet = float(input(f"Enter your bet amount ({MIN_BET}-{MAX_BET}):$ "))
-            if MIN_BET <= bet <= MAX_BET:
-                return bet
+            get_amount = float(input(f"How much money would you like to play with? ({MIN_BALANCE}-{MAX_BALANCE}): "))
+            if get_amount < MIN_BALANCE:
+                print("You must enter at least 0.50 to play.")
+            elif get_amount > MAX_BALANCE:
+                print("You must enter less than 1000 to play.")
             else:
-                print(f"Please enter an amount between {MIN_BET} and {MAX_BET}.")
+                print("You have entered: ", get_amount)
+                return get_amount
         except ValueError:
-            print("Please enter a valid number.")
+            print("Invalid input. Please enter a number.")
+
+def lines():
+    while True:
+        try:
+            get_lines = int(input(f"Enter the number of lines to bet on ({MIN_LINES}-{MAX_LINES}): "))
+            if get_lines < MIN_LINES or get_lines > MAX_LINES:
+                print("Enter a valid number of lines.")
+            else:
+                print("You have entered: ", get_lines)
+                return get_lines
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+def bet(lines):
+    while True:
+        try:
+            get_bet = float(input(f"What would you like to bet on each line? ({MIN_BALANCE}-{MAX_BALANCE}): "))
+            if MIN_BALANCE <= get_bet <= MAX_BALANCE:
+                total_bet = get_bet * lines
+                print(f"Total bet is: {total_bet}")
+                return total_bet
+            else:
+                print(f"Amount must be between ${MIN_BALANCE} - ${MAX_BALANCE}.")
+        except ValueError:
+            print("Please enter a number.")
+
+def spin(balance, total_bet):
+    while True:
+        if total_bet > balance:
+            print(f"You do not have enough to bet that amount, your current balance is: ${balance}")
             break
+        else:
+            balance -= total_bet
+            print(f"Your balance is now: ${balance}")
 
-def balance(get_bet, total_wins):
-   balance = (get_bet - total_wins)
-   if balance > 0:
-       return balance
-    
-  
-                
-          
-
-def randomizer():
-    return random.choice([True, False])
-
-def wins():
-    cherry = random.choice(range(101))
-    bell = random.choice(range(81))
-    lemon = random.choice(range(41))
-    orange = random.choice(range(21))
-    star = random.choice(range(11))
-    skull = random.choice(range(16))
-    total_wins = cherry + bell + lemon + orange + star + skull
-    return total_wins
-
-def game():
-    get_bet = Bet() 
-    while True:
-        get_lines = Lines()
-        total_bet = get_bet * get_lines
-        
-        print(f"Total bet: ${total_bet}")
-        print("Good luck!")
-        print("Spinning...")
-        total_wins = wins()
-        print(f"Total wins: {total_wins}")
-        
-        if total_wins > 0.5:
-            print("Congratulations! You won!")
-            payout = get_bet * Input_List_payouts[symbols[total_wins % len(symbols)]] * get_lines
-            print(f"Total payout: ${payout}")
-           
-        continue
-        balance = get_bet - total_wins
-        print(f"Balance: ${get_bet-total_wins}")
-           
-        
-    
-       
-
-def main():
-
-    
-
- if __name__ == "__main__":
-    game()
+            for i in range(3):
+                print(random.randint(1, 9), end=" ")
+            print()
