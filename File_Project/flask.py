@@ -1,6 +1,6 @@
 # filepath: /Users/jaysonasuncion/Money/MONEY-3/app.py
-from flask import Flask, render_template, request # type: ignore
-from Gambling import amount, lines, bet, spin
+from File_Project.flask import Flask, render_template, request # type: ignore
+from File_Project.Gambling import amount, lines, bet, spin
 
 app = Flask(__name__)
 
