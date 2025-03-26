@@ -3,15 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Slot-Machine</title>
+    <title>Slot Machine</title>
 <style>
 
 
 </style>
 </head>
 <body>
+    <h1>Welcome to the Slot Machine!</h1>
 
-    <h1>Hello, Flask!</h1>
+    <form action="/play" method="post">
+        <button type="submit">Spin</button>
+    </form>
 
+    {% if result %}
+        <h2>Spin Result: {{ result }}</h2>
+    {% endif %}
 </body>
 </html>
